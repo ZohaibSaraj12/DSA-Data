@@ -78,7 +78,9 @@ int main() {
 
     q.display();
     
+    
 
+    cout << "Dequeuing from the circular Queue:" << endl;
 
     q.dequeue();
     q.dequeue();
