@@ -23,6 +23,12 @@ Node*  insertIntoBST(Node*& root, int d)
         return root;
         
     }
+    if (root->data == d)
+    {
+        cout << "Sharam Kar same element teko pata BST chy koni hona Zalum" << endl;
+        return root;
+    }
+    
     if (d > root->data)
     {
         cout << "Root ka right subtree" << endl;
