@@ -25,22 +25,33 @@ void heapify(int arr[], int n, int i)
 
 void heapSort(int arr[], int n)
 {
-    for (int i = (n - 1)/ 2; i >= 0; i--)
+
+    for (int i = (n - 1) / 2; i >= 0; i--)
     {
         heapify(arr, n, i);
     }
+    
     int size = n - 1;
+    
     while (size > 0)
     {
-
-        swap(arr[0], arr[size]);
-        size--;
-        heapify(arr, size, 0);
+        
+       
+       
+        int temp = arr[0];
+        arr[0] = arr[size];
+        arr[size] = temp;
+        size = size - 1;
+        cout << "\nsize after decrement" << size << " "  << endl;
+        // This is Wrong if not size + 1 in 2nd argument of heapify
+        // heapify(arr, size, 0);
+        // Now on next line is correct
+        heapify(arr, size + 1, 0);
     }
 }
 int main()
 {
-    int arr[6] = {4, 3, 70, 10, 40, 50};
+    int arr[6] = {10, 70, 30, 50, 20, 3};
     heapSort(arr, 6);
 
     for (int i = 0; i < 6; i++)
