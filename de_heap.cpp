@@ -11,10 +11,9 @@ public:
     }
     void insert(int value)
     {
-        size = size + 1; // 0 + 1 = 1
-        int index = size - 1;  // 1 - 1 = 0
-        arr[index] = value;   // arr[0] = value;
-
+        int index = size;  
+        arr[index] = value;   
+        size++;
         while (index > 0)
         {
             int parent = (index - 1) / 2;
@@ -59,6 +58,7 @@ public:
         }
 
         arr[0] = arr[size - 1];
+        
         size--;
         int i = 0;
         heapify(arr, size, i);
