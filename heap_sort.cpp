@@ -6,7 +6,6 @@ void heapify(int arr[], int n, int i)
     int left = i * 2 + 1;
     int right = i * 2 + 2;
 
-
     if (left < n && arr[largest] < arr[left])
     {
         largest = left;
@@ -15,47 +14,37 @@ void heapify(int arr[], int n, int i)
     {
         largest = right;
     }
-
     if (largest != i)
     {
         swap(arr[largest], arr[i]);
         heapify(arr, n, largest);
     }
 }
-
 void heapSort(int arr[], int n)
 {
-  
     for (int i = (n - 1) / 2; i >= 0; i--)
     {
         heapify(arr, n, i);
     }
-    
+
     int size = n - 1;
-    
-    while (size > 0)
+
+    while (size  > 0)
     {
-        
-       
-       
-        int temp = arr[0];
-        arr[0] = arr[size];
-        arr[size] = temp;
-        size = size - 1;
-        cout << "\nsize after decrement" << size << " "  << endl;
-        // This is Wrong if not size + 1 in 2nd argument of heapify
-        // heapify(arr, size, 0);
-        // Now on next line is correct
+        swap(arr[0], arr[size]);
+        size--;
         heapify(arr, size + 1, 0);
     }
 }
 int main()
 {
-    int arr[6] = {10, 70, 30, 50, 20, 3};
+    int arr[6] = {3, 10, 20, 40, 70, 50};
     heapSort(arr, 6);
+
+    cout << "Printing Sorted array" << endl;
 
     for (int i = 0; i < 6; i++)
     {
-        cout << arr[i] << " "; 
+        cout << arr[i] << " ";
     }
 }
