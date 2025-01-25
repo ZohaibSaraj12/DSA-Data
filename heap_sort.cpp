@@ -38,7 +38,7 @@ void heapSort(int arr[], int n)
 }
 int main()
 {
-    int arr[6] = {3, 10, 20, 40, 70, 50};
+    int arr[6] = {5, 4, 20, 50, 40, 70};
     heapSort(arr, 6);
 
     cout << "Printing Sorted array" << endl;
