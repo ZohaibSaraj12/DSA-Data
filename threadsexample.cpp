@@ -6,7 +6,7 @@
 void task1() {
     for (int i = 0; i < 10; ++i) {
         cout << "Task 1 is running...\n";
-        this_thread::sleep_for(std::chrono::milliseconds(500)); // Simulate work
+        this_thread::sleep_for(chrono::milliseconds(500)); // Simulate work
     }
 }
 
@@ -14,7 +14,7 @@ void task1() {
 void task2() {
     for (int i = 0; i < 10; ++i) {
         cout << "Task 2 is running...\n";
-        this_thread::sleep_for(std::chrono::milliseconds(500)); // Simulate work
+        this_thread::sleep_for(chrono::milliseconds(500)); // Simulate work
     }
 }
 
