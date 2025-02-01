@@ -4,11 +4,11 @@
 class Graph {
 public:
     // Adjacency matrix representation (n x n)
-    std::vector<std::vector<int>> adjMatrix;
+    vector<vector<int>> adjMatrix;
 
     // Constructor to initialize the matrix with 0s
     Graph(int n) {
-        adjMatrix.resize(n, std::vector<int>(n, 0));  // Create an n x n matrix with all 0s
+        adjMatrix.resize(n, vector<int>(n, 0));  // Create an n x n matrix with all 0s
     }
 
     // Function to add an edge between two vertices u and v
@@ -21,9 +21,9 @@ public:
     void displayGraph() {
         for (int i = 0; i < adjMatrix.size(); ++i) {
             for (int j = 0; j < adjMatrix[i].size(); ++j) {
-                std::cout << adjMatrix[i][j] << " ";  // Print each element in the matrix
+                cout << adjMatrix[i][j] << " ";  // Print each element in the matrix
             }
-            std::cout << std::endl;
+            cout << endl;
         }
     }
 };
