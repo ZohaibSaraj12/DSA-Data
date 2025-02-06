@@ -6,5 +6,6 @@
         "random": "cpp",
         "limits": "cpp"
     },
-    "C_Cpp.errorSquiggles": "enabled"
+    "C_Cpp.errorSquiggles": "enabled",
+    "github-enterprise.uri": "https://gh repo clone zohaibsaraj12"
 }
