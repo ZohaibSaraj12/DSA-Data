@@ -2,22 +2,22 @@
 using namespace std;
 void heapify(int arr[], int n, int i)
 {
-    int largest = i;
+    int parent = i;
     int left = i * 2 + 1;
     int right = i * 2 + 2;
 
-    if (left < n && arr[largest] < arr[left])
+    if (left < n && arr[parent] < arr[left])
     {
-        largest = left;
+        parent = left;
     }
-    if (right < n && arr[largest] < arr[right])
+    if (right < n && arr[parent] < arr[right])
     {
-        largest = right;
+        parent = right;
     }
-    if (largest != i)
+    if (parent != i)
     {
-        swap(arr[largest], arr[i]);
-        heapify(arr, n, largest);
+        swap(arr[parent], arr[i]);
+        heapify(arr, n, parent);
     }
 }
 void heapSort(int arr[], int n)
