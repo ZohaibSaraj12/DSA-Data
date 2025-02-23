@@ -1,29 +1,20 @@
-// Implementation of the merge sort using the vectors that are called dynamic arrays 
 #include <iostream>
-#include <vector>
 using namespace std;
-void merge(vector<int>& arr, int left, int mid, int right)
+void merge(int arr[], int p, int mid, int q)
 {
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
+    int n1 = mid - p + 1;
+    int n2 = q - mid;
 
-
-    vector<int> l(n1);
-    vector<int> r(n2);
-
+    int l[n1], r[n2];
     for (int i = 0; i < n1; i++)
     {
-        l[i] = arr[left + i];
+        l[i] = arr[p + i];
     }
-    for (int j = 0; j < n1; j++)
+    for (int j = 0; j < n2; j++)
     {
-        r[j] = arr[mid + j + 1];
+        r[j] = arr[mid + 1 + j];
     }
-
-    int i = 0;
-    int j = 0; 
-    int k = left;
-
+    int i = 0, j = 0, k = p;
 
     while (i < n1 && j < n2)
     {
@@ -39,32 +30,32 @@ void merge(vector<int>& arr, int left, int mid, int right)
     while (i < n1)
     {
         arr[k++] = l[i++];
-
     }
     while (j < n2)
     {
         arr[k++] = r[j++];
     }
 }
-void mergeSort(vector<int>& arr, int left, int right)
+void mergeSort(int arr[], int p, int q)
 {
-    if (left < right)
+    if (p < q)
     {
-        int mid = left + (right - left) / 2;
-        mergeSort(arr, left, mid);
-        mergeSort(arr, mid + 1, right);
-        merge(arr, left, mid, right);
+        int mid = p + (q - p) / 2;
+        mergeSort(arr, p, mid);
+        mergeSort(arr, mid + 1, q);
+        merge(arr, p, mid, q);
+
+
     }
 }
+
 int main()
 {
-    vector<int> arr = {4, 3, 2, 1, 5};
-    mergeSort(arr, 0, arr.size() - 1);
-    cout << "Final Sorted Array is: " << endl;
-    for (const auto& num : arr)
-    {
-        cout << num << " ";
-    }
+    int arr[5] = {3, 2, 1, 4, 5};
 
-    return 0;
+    mergeSort(arr, 0, 4);
+    for (int i = 0; i < 5; i++)
+    {
+       cout << arr[i] << " ";
+    }
 }

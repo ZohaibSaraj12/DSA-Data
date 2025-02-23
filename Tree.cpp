@@ -6,14 +6,14 @@ class Node
 {
 public:
     int data;
-    Node *left;
-    Node *right;
+    Node *p;
+    Node *q;
 
     Node(int val)
     {
         data = val;
-        left = NULL;
-        right = NULL;
+        p = NULL;
+        q = NULL;
     }
 };
 
@@ -40,13 +40,13 @@ void levelOrderTraversal(Node *&root)
         {
             cout << temp->data << " ";
 
-            if (temp->left)
+            if (temp->p)
             {
-                q.push(temp->left);
+                q.push(temp->p);
             }
-            if (temp->right)
+            if (temp->q)
             {
-                q.push(temp->right);
+                q.push(temp->q);
             }
         }
     }
@@ -60,22 +60,22 @@ void preorderTraversal(Node *&root)
 
     cout << root->data << " ";
     cout << endl
-         << "root ka left horaha haye " << endl;
+         << "root ka p horaha haye " << endl;
 
-    preorderTraversal(root->left);
+    preorderTraversal(root->p);
 
     cout << endl
-         << "root ka right horaha haye " << endl;
-    preorderTraversal(root->right);
+         << "root ka q horaha haye " << endl;
+    preorderTraversal(root->q);
 }
 int main()
 {
     Node *root = new Node(1);
-    root->left = new Node(3);
-    root->right = new Node(5);
-    root->right->left = new Node(17);
-    root->left->right = new Node(11);
-    root->left->left = new Node(7);
+    root->p = new Node(3);
+    root->q = new Node(5);
+    root->q->p = new Node(17);
+    root->p->q = new Node(11);
+    root->p->p = new Node(7);
 
     preorderTraversal(root);
 }

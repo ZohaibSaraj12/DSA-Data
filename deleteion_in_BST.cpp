@@ -5,13 +5,13 @@ using namespace std;
 class Node {
     public:
         int data;
-        Node* left;
-        Node* right;
+        Node* p;
+        Node* q;
 
     Node(int d)
     {
         data = d;
-        left = right = NULL;
+        p = q = NULL;
     }
 };
 Node*  insertIntoBST(Node*& root, int d)
@@ -24,12 +24,12 @@ Node*  insertIntoBST(Node*& root, int d)
     }
     if (d > root->data)
     {
-        root->right = insertIntoBST(root->right, d);
+        root->q = insertIntoBST(root->q, d);
 
     }
     else
     {
-        root->left = insertIntoBST(root->left, d);
+        root->p = insertIntoBST(root->p, d);
         
     }
     return root;
@@ -50,9 +50,9 @@ Node* minValue(Node* root)
 {
     Node* temp = root;
 
-    while (temp->left != NULL)
+    while (temp->p != NULL)
     {
-        temp = temp->left;
+        temp = temp->p;
     }
     return temp;
     
@@ -68,7 +68,7 @@ Node* deleteFromBST(Node*& root, int d)
     if (root->data == d)
     {
         // 0 child
-        if ((root->left == NULL) && (root->right == NULL))
+        if ((root->p == NULL) && (root->q == NULL))
         {
             Node* temp = root;
             delete root;
@@ -76,52 +76,52 @@ Node* deleteFromBST(Node*& root, int d)
             return NULL;
         }
         // 1 child
-        // left child
-        if ((root->left != NULL) && (root->right == NULL))
+        // p child
+        if ((root->p != NULL) && (root->q == NULL))
         {
-            cout << "left child agiya" << root->data << endl;
-            Node* temp = root->left;
+            cout << "p child agiya" << root->data << endl;
+            Node* temp = root->p;
             delete root;
             cout << "ab current root ko delete kardia ham n return kar rahy hain" << endl;
             cout << temp->data << endl;
             return temp;
         }
-        //right child
-        if ((root->left == NULL) && (root->right != NULL))
+        //q child
+        if ((root->p == NULL) && (root->q != NULL))
         {
-            Node* temp = root->right;
+            Node* temp = root->q;
             
             delete root;
-            cout << "Ab right mein aya haye to dekho " << temp->data << endl;
+            cout << "Ab q mein aya haye to dekho " << temp->data << endl;
             return temp;
         }
 
         //2 child
 
-        if ((root->left != NULL) && (root->right != NULL))
+        if ((root->p != NULL) && (root->q != NULL))
         {
-            int mini = minValue(root->right)->data;
+            int mini = minValue(root->q)->data;
             root->data = mini;
             cout << "mini is " << mini << endl;
             cout << "root ka data" << root->data << endl;
-            cout << "Right mein jao" << endl;
-            root->right = deleteFromBST(root->right, mini);
-            cout << "root ko return karrahy hain right subtree mein" << endl;
+            cout << "q mein jao" << endl;
+            root->q = deleteFromBST(root->q, mini);
+            cout << "root ko return karrahy hain q subtree mein" << endl;
             cout << root->data << endl;
             return root;
         }
     }
     if (root->data > d)
     {
-        cout << endl << "Left part men jao kionk " << root->data << endl;
-        root->left = deleteFromBST(root->left, d);
+        cout << endl << "p part men jao kionk " << root->data << endl;
+        root->p = deleteFromBST(root->p, d);
         cout << endl << "Root ko return kar rahy hain ham " << endl;
         cout << root->data << endl << endl;
         return root;
     }
     else 
     {
-        root->right = deleteFromBST(root->right, d);
+        root->q = deleteFromBST(root->q, d);
         cout << "ye else part haye " << endl;
         return root;
     }
@@ -150,13 +150,13 @@ void levelOrderTraversal(Node *&root)
         {
             cout << temp->data << " ";
 
-            if (temp->left)
+            if (temp->p)
             {
-                q.push(temp->left);
+                q.push(temp->p);
             }
-            if (temp->right)
+            if (temp->q)
             {
-                q.push(temp->right);
+                q.push(temp->q);
             }
         }
     }

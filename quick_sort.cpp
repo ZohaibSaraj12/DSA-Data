@@ -1,14 +1,11 @@
 #include <iostream>
 #include <vector>
-
 using namespace std;
 int partition(vector<int>& arr, int low, int high)
 {
     int pivot = arr[low];
     int p = low + 1;
     int q = high;
-
-
     while (p <= q)
     {
         while (p <= q && arr[p] <= pivot)

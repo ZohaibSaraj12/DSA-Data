@@ -56,7 +56,7 @@ def plot_bar_chart(labels, values):
     plt.xlabel("Operations")
     plt.ylabel("Results")
     plt.title("Calculator Results Visualization")
-    plt.xticks(rotation=45, ha='right')  # Rotate labels for better visibility
+    plt.xticks(rotation=45, ha='q')  # Rotate labels for better visibility
     plt.tight_layout()  # Adjust layout to fit all labels
     plt.show()
 

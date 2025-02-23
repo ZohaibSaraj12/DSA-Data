@@ -1,51 +1,45 @@
 #include <iostream>
 using namespace std;
-int partition(int arr[], int low, int high)
+int partitionGame(int arr[], int low, int high)
 {
-    // Selecting Pivot as the starting element
     int pivot = arr[low];
-    int left = low + 1;
-    int right = high;
+    int p = low + 1;
+    int q = high;
 
-    while (left <= right)
+    while (p <= q)
     {
-        while (left <= right && arr[left] <= pivot)
+        while (p <= q && arr[p] <= pivot)
         {
-            left++;
+            p++;
         }
-        while (left <= right && arr[right] > pivot)
+        while (p <= q && arr[q] > pivot)
         {
-            right--;
+            q--;
         }
-        if (left < right)
+        if (p < q)
         {
-            swap(arr[left], arr[right]);
+            swap(arr[p], arr[q]);
         }
     }
-    swap(arr[low], arr[right]);
-    return right;
+    swap(arr[low], arr[q]);
+    return q;
 }
 void quickSort(int arr[], int low, int high)
 {
     if (low < high)
     {
-        int pivotIndex = partition(arr, low, high);
+        int pivotIndex = partitionGame(arr, low, high);
         quickSort(arr, low, pivotIndex - 1);
         quickSort(arr, pivotIndex + 1, high);
     }
 }
 int main()
 {
-    const int n = 6;
-    int arr[n] = {5, 3, 4, 6, 7, 8};
+    int arr[5] = {4, 2, 3, 1, 5};
+    quickSort(arr, 0, 4);
 
-    quickSort(arr, 0, n - 1);
-
-    for (const auto &num : arr)
+    for (int i = 0; i < 5; i++)
     {
-        cout << num << " ";
+        cout << arr[i] << " ";
     }
-    return 0;
-
-    // Closure of the main
 }

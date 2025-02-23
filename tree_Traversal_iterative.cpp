@@ -5,9 +5,9 @@ using namespace std;
 
 struct TreeNode {
     int value;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int val) : value(val), left(NULL), right(NULL) {}
+    TreeNode* p;
+    TreeNode* q;
+    TreeNode(int val) : value(val), p(NULL), q(NULL) {}
 };
 
 void inorderTraversal(TreeNode* root) {
@@ -15,10 +15,10 @@ void inorderTraversal(TreeNode* root) {
     TreeNode* current = root;
     
     while (current != NULL || !s.empty()) {
-        // Reach the leftmost node
+        // Reach the pmost node
         while (current != NULL) {
             s.push(current);
-            current = current->left;
+            current = current->p;
         }
         
         // Process the node
@@ -26,8 +26,8 @@ void inorderTraversal(TreeNode* root) {
         s.pop();
         cout << current->value << " ";
         
-        // Move to the right subtree
-        current = current->right;
+        // Move to the q subtree
+        current = current->q;
     }
 }
 void preorderTraversal(TreeNode* root) {
@@ -42,9 +42,9 @@ void preorderTraversal(TreeNode* root) {
         
         cout << current->value << " ";
         
-        // Right child is pushed first so left child is processed first
-        if (current->right) s.push(current->right);
-        if (current->left) s.push(current->left);
+        // q child is pushed first so p child is processed first
+        if (current->q) s.push(current->q);
+        if (current->p) s.push(current->p);
     }
 }
 void postorderTraversal(TreeNode* root) {
@@ -58,9 +58,9 @@ void postorderTraversal(TreeNode* root) {
         s1.pop();
         s2.push(current);
         
-        // Push left and right children to s1
-        if (current->left) s1.push(current->left);
-        if (current->right) s1.push(current->right);
+        // Push p and q children to s1
+        if (current->p) s1.push(current->p);
+        if (current->q) s1.push(current->q);
     }
     
     // Process nodes in s2 (which will be in post-order)
@@ -71,10 +71,10 @@ void postorderTraversal(TreeNode* root) {
 }
 int main() {
     TreeNode* root = new TreeNode(1);
-    root->left = new TreeNode(2);
-    root->right = new TreeNode(3);
-    root->left->left = new TreeNode(4);
-    root->left->right = new TreeNode(5);
+    root->p = new TreeNode(2);
+    root->q = new TreeNode(3);
+    root->p->p = new TreeNode(4);
+    root->p->q = new TreeNode(5);
     
     inorderTraversal(root);  // Output: 4 2 5 1 3
     cout << endl;

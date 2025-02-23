@@ -9,19 +9,19 @@ using namespace std;
 struct Node {
     char ch;
     int freq;
-    Node *left, *right;
+    Node *p, *q;
 
     Node(char character, int frequency) {
         ch = character;
         freq = frequency;
-        left = right = nullptr;
+        p = q = nullptr;
     }
 };
 
 // Compare function for priority queue
 struct Compare {
-    bool operator()(Node* left, Node* right) {
-        return left->freq > right->freq;
+    bool operator()(Node* p, Node* q) {
+        return p->freq > q->freq;
     }
 };
 
@@ -29,12 +29,12 @@ struct Compare {
 void generateCodes(Node* root, const string& code, unordered_map<char, string>& huffmanCodes) {
     if (!root) return;
 
-    if (!root->left && !root->right) {
+    if (!root->p && !root->q) {
         huffmanCodes[root->ch] = code;
     }
 
-    generateCodes(root->left, code + "0", huffmanCodes);
-    generateCodes(root->right, code + "1", huffmanCodes);
+    generateCodes(root->p, code + "0", huffmanCodes);
+    generateCodes(root->q, code + "1", huffmanCodes);
 }
 
 // Build Huffman Tree
@@ -46,13 +46,13 @@ Node* buildHuffmanTree(const unordered_map<char, int>& freq) {
     }
 
     while (pq.size() != 1) {
-        Node *left = pq.top(); pq.pop();
-        Node *right = pq.top(); pq.pop();
+        Node *p = pq.top(); pq.pop();
+        Node *q = pq.top(); pq.pop();
 
-        int sum = left->freq + right->freq;
+        int sum = p->freq + q->freq;
         Node* newNode = new Node('\0', sum);
-        newNode->left = left;
-        newNode->right = right;
+        newNode->p = p;
+        newNode->q = q;
         pq.push(newNode);
     }
 
@@ -143,9 +143,9 @@ void decompressFile(const string& compressedFile, const string& outputFile) {
     string decodedData;
     Node* current = root;
     for (char bit : encodedData) {
-        current = (bit == '0') ? current->left : current->right;
+        current = (bit == '0') ? current->p : current->q;
 
-        if (!current->left && !current->right) {
+        if (!current->p && !current->q) {
             decodedData += current->ch;
             current = root;
         }

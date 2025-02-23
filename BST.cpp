@@ -5,13 +5,13 @@ using namespace std;
 class Node {
     public:
         int data;
-        Node* left;
-        Node* right;
+        Node* p;
+        Node* q;
 
     Node(int d)
     {
         data = d;
-        left = right = NULL;
+        p = q = NULL;
     }
 };
 Node*  insertIntoBST(Node*& root, int d)
@@ -31,14 +31,14 @@ Node*  insertIntoBST(Node*& root, int d)
     
     if (d > root->data)
     {
-        cout << "Root ka right subtree" << endl;
-        root->right = insertIntoBST(root->right, d);
+        cout << "Root ka q subtree" << endl;
+        root->q = insertIntoBST(root->q, d);
 
     }
     else
     {
-        cout << "root ka left subtree" << endl;
-        root->left = insertIntoBST(root->left, d);
+        cout << "root ka p subtree" << endl;
+        root->p = insertIntoBST(root->p, d);
         
     }
     cout << "ab ham return kar rahy hain root dekh lena" << endl;
@@ -80,13 +80,13 @@ void levelOrderTraversal(Node *&root)
         {
             cout << temp->data << " ";
 
-            if (temp->left)
+            if (temp->p)
             {
-                q.push(temp->left);
+                q.push(temp->p);
             }
-            if (temp->right)
+            if (temp->q)
             {
-                q.push(temp->right);
+                q.push(temp->q);
             }
         }
     }

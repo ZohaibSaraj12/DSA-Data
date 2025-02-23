@@ -5,12 +5,12 @@ using namespace std;
 class Node {
 public:
     int data;
-    Node* left;
-    Node* right;
+    Node* p;
+    Node* q;
 
     Node(int d) {
         data = d;
-        left = right = NULL;
+        p = q = NULL;
     }
 };
 
@@ -21,9 +21,9 @@ Node* insertIntoBST(Node* root, int d) {
         return root;
     }
     if (d > root->data) {
-        root->right = insertIntoBST(root->right, d);
+        root->q = insertIntoBST(root->q, d);
     } else {
-        root->left = insertIntoBST(root->left, d);
+        root->p = insertIntoBST(root->p, d);
     }
     return root;
 }
@@ -48,9 +48,9 @@ bool searchInBST(Node* root, int d) {
         return true;
     }
     if (root->data > d) {
-        return searchInBST(root->left, d);
+        return searchInBST(root->p, d);
     } else {
-        return searchInBST(root->right, d);
+        return searchInBST(root->q, d);
     }
 }
 
@@ -73,11 +73,11 @@ void levelOrderTraversal(Node* root) {
             }
         } else {
             cout << temp->data << " ";
-            if (temp->left) {
-                q.push(temp->left);
+            if (temp->p) {
+                q.push(temp->p);
             }
-            if (temp->right) {
-                q.push(temp->right);
+            if (temp->q) {
+                q.push(temp->q);
             }
         }
     }

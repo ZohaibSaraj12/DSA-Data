@@ -31,16 +31,16 @@ public:
     void heapify(int arr[], int n, int i)
     {
         int parent = i;
-        int left = i * 2 + 1;
-        int right = i * 2 + 2;
+        int p = i * 2 + 1;
+        int q = i * 2 + 2;
 
-        if (left < n && arr[parent] < arr[left])
+        if (p < n && arr[parent] < arr[p])
         {
-            parent = left;
+            parent = p;
         }
-        if (right < n && arr[parent] < arr[right])
+        if (q < n && arr[parent] < arr[q])
         {
-            parent = right;
+            parent = q;
         }
 
         if (parent != i)

@@ -32,7 +32,7 @@ def calculate():
 
 # Entry widget for displaying the result
 entry_var = tk.StringVar()
-entry = tk.Entry(window, textvariable=entry_var, font=("Arial", 20), bd=10, insertwidth=4, width=14, borderwidth=4, justify="right")
+entry = tk.Entry(window, textvariable=entry_var, font=("Arial", 20), bd=10, insertwidth=4, width=14, borderwidth=4, justify="q")
 entry.grid(row=0, column=0, columnspan=4)
 
 # Creating buttons

@@ -1,44 +1,38 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 int main()
 {
-    vector<int> arr;
-    int size;
-    cout << "Enter how many do you want to enter: " << endl;
-    cin >> size;
-    cout << "Enter Elements" << endl;
-    for (int i = 0; i < size; i++)
+    cout << "Enter array size" << endl;
+    int n;
+    cin >> n;
+
+    cout << "Enter elements " << endl;
+    int arr[n];
+    for (int i = 0; i < n; i++)
     {
-        int element;
-        cin >> element;
-        arr.push_back(element);
+        cin >> arr[i];
     }
 
-    int n = arr.size();
-    
-    
     for (int i = 0; i < n - 1; i++)
     {
         int minIndex = i;
-        for (int j = i + 1; j < n; j++)
+        for (int j =  i + 1; j < n; j++)
         {
             if (arr[j] < arr[minIndex])
             {
                 minIndex = j;
             }
         }
+
+       
+            int temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
         
-        if (minIndex != i)
-        {
-            swap(arr[i], arr[minIndex]);
-        }
-    }
-    
-    cout << "Final Sorted Array: " << endl;
-    for (const auto& num : arr)
-    {
-        cout << num << " ";
     }
 
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
 }
