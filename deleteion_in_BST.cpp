@@ -82,7 +82,7 @@ Node* deleteFromBST(Node*& root, int d)
             cout << "p child agiya" << root->data << endl;
             Node* temp = root->p;
             delete root;
-            cout << "ab currentent root ko delete kardia ham n return kar rahy hain" << endl;
+            cout << "ab current root ko delete kardia ham n return kar rahy hain" << endl;
             cout << temp->data << endl;
             return temp;
         }

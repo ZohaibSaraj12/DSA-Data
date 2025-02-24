@@ -26,7 +26,8 @@ void insertNode(Node*& tail, int element, int d) {
     else 
     {
         Node* current = tail;
-        while (current->data != element) {
+        while (current->data != element) 
+        {
             current = current->next;
         }
         Node* temp = new Node(d);
@@ -61,7 +62,6 @@ void deleteNode(Node*& tail, int value) {
     current->next = NULL;
     delete current;
 }
-
 void display(Node* tail) {
     if (tail == NULL) {
         cout << "List is empty!\n";

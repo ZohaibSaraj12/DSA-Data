@@ -141,13 +141,13 @@ void decompressFile(const string& compressedFile, const string& outputFile) {
 
     // Decode the data
     string decodedData;
-    Node* currentent = root;
+    Node* current = root;
     for (char bit : encodedData) {
-        currentent = (bit == '0') ? currentent->p : currentent->q;
+        current = (bit == '0') ? current->p : current->q;
 
-        if (!currentent->p && !currentent->q) {
-            decodedData += currentent->ch;
-            currentent = root;
+        if (!current->p && !current->q) {
+            decodedData += current->ch;
+            current = root;
         }
     }
 

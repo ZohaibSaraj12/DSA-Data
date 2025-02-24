@@ -27,15 +27,15 @@ public:
         vector<int> dist(vertices, INT_MAX);
         dist[source] = 0;
 
-        // Set to store the nodes along with their currentent distance
+        // Set to store the nodes along with their current distance
         set<pair<int, int>> s;
         s.insert({0, source});  // {distance, node}
 
         while (!s.empty()) {
             // Get the node with the smallest distance
-            auto currentent = *s.begin();
-            int u = currentent.second;
-            int d = currentent.first;
+            auto current = *s.begin();
+            int u = current.second;
+            int d = current.first;
             s.erase(s.begin());  // Remove the node from the set
 
             // Explore the neighbors

@@ -7,19 +7,19 @@ class Node
 public:
     int data;
     Node *next;
-    Node *previousious;
+    Node *previous;
 
     // parameterized Constructor
     Node(int data)
     {
         this->data = data;
         this->next = NULL;
-        this->previousious = NULL;
+        this->previous = NULL;
     }
     ~Node()
     {
         this->next = NULL;
-        this->previousious = NULL;
+        this->previous = NULL;
     }
 };
 
@@ -35,7 +35,7 @@ void insertAtHead(Node *&head, Node *&tail, int data)
         return;
     }
     temp->next = head;
-    head->previousious = temp;
+    head->previous = temp;
     head = temp;
 }
 // inserting at tail
@@ -49,7 +49,7 @@ void insertAtTail(Node *&head, Node *&tail, int data)
         return;
     }
     tail->next = temp;
-    temp->previousious = tail;
+    temp->previous = tail;
     tail = temp;
 }
 
@@ -82,9 +82,9 @@ void insertAtPosition(Node *&head, Node *&tail, int data, int position)
     }
     Node *nodeToinsert = new Node(data);
     nodeToinsert->next = temp->next;
-    nodeToinsert->previousious = temp;
+    nodeToinsert->previous = temp;
     temp->next = nodeToinsert;
-    temp->next->previousious = nodeToinsert;
+    temp->next->previous = nodeToinsert;
 
     if (nodeToinsert->next == NULL)
     {
@@ -110,7 +110,7 @@ void deleteNode(Node *&head, Node *&tail, int position)
     {
         Node *temp = head;
         head = temp->next;
-        head -> previousious = NULL;
+        head -> previous = NULL;
         if (head == NULL)
         {
             head = tail = NULL;
@@ -120,36 +120,36 @@ void deleteNode(Node *&head, Node *&tail, int position)
     }
     else
     {
-        Node *previousious = NULL;
-        Node *currentent = head;
+        Node *previous = NULL;
+        Node *current = head;
 
         int count = 1;
 
-        while (count < position && currentent != NULL)
+        while (count < position && current != NULL)
         {
-            previousious = currentent;
-            currentent = currentent->next;
+            previous = current;
+            current = current->next;
             count++;
         }
-        if (currentent == NULL)
+        if (current == NULL)
         {
             cout << "Deleting Beyond The list" << endl;
             return;
         }
-        if (currentent != NULL)
+        if (current != NULL)
         {
-            previousious->next = currentent->next;
-            if (currentent->next != NULL)
+            previous->next = current->next;
+            if (current->next != NULL)
             {
-                currentent->next->previousious = previousious; 
+                current->next->previous = previous; 
             }
-            currentent->previousious = NULL;
-            currentent->next = NULL;
-            delete currentent;
+            current->previous = NULL;
+            current->next = NULL;
+            delete current;
         }
-        if (currentent == tail)
+        if (current == tail)
         {
-            tail = previousious;
+            tail = previous;
         }
     }
 }
