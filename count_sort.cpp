@@ -20,7 +20,7 @@ int main()
     // if we just do here i = 0 < range what is wrong we just doing 
     // count[0] = count[0] + count[0 - 1]  ----> which will be count[0] = count[0] + count[-1]
     // count[-1] is wrong coz we have no index of -1 so we start from 1 index so that 
-    // it will sum all the previous together 
+    // it will sum all the previousious together 
     for (int i = 1; i < range; i++)
     {
         count[i] = count[i] + count[i - 1];

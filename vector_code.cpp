@@ -3,25 +3,25 @@ using namespace std;
 int main() {
     int* arr = new int [3];
     int capacity = 3;
-    int current = 0;
+    int currentent = 0;
     int value;
 
     cout << "Enter values (max size 3) Enter -1 To Stop: " << endl;
     while (true) {
-       cout << "Enter A ("<< current + 1 << ") value: ";
+       cout << "Enter A ("<< currentent + 1 << ") value: ";
         cin >> value;
 
         if (value == -1) {
             break;
         }
-        arr[current] = value;
-        current++;
+        arr[currentent] = value;
+        currentent++;
 
-        if (current == capacity) {
+        if (currentent == capacity) {
             capacity *= 2;
             int* tempArr = new int [capacity];
 
-            for (int i = 0; i < current; i++) {
+            for (int i = 0; i < currentent; i++) {
                 tempArr[i] = arr[i];
             }
             delete[] arr;
@@ -30,19 +30,19 @@ int main() {
     }
 
 
-    if (current < capacity) {
-    int* fArray = new int [current];
-    for (int i = 0; i < current; i++) {
+    if (currentent < capacity) {
+    int* fArray = new int [currentent];
+    for (int i = 0; i < currentent; i++) {
         fArray[i] = arr[i];
     }
     delete[] arr;
     arr = fArray;
-    for (int i = 0; i < current; i++) {
+    for (int i = 0; i < currentent; i++) {
     }
 
         cout << arr[i] << " ";
     }
-    cout << "\nSize of Array is: " << current << " " << endl;
+    cout << "\nSize of Array is: " << currentent << " " << endl;
     delete[] arr;
     return 0;
 }

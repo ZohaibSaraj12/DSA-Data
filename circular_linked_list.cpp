@@ -17,18 +17,21 @@ public:
 };
 
 void insertNode(Node*& tail, int element, int d) {
-    if (tail == NULL) {
+    if (tail == NULL) 
+    {
         Node* newNode = new Node(d);
         tail = newNode;
         newNode->next = newNode;
-    } else {
-        Node* curr = tail;
-        while (curr->data != element) {
-            curr = curr->next;
+    } 
+    else 
+    {
+        Node* current = tail;
+        while (current->data != element) {
+            current = current->next;
         }
         Node* temp = new Node(d);
-        temp->next = curr->next;
-        curr->next = temp;
+        temp->next = current->next;
+        current->next = temp;
     }
 }
 
@@ -38,25 +41,25 @@ void deleteNode(Node*& tail, int value) {
         return;
     }
 
-    Node* prev = tail;
-    Node* curr = prev->next;
+    Node* previous = tail;
+    Node* current = previous->next;
 
-    while (curr->data != value) {
-        prev = curr;
-        curr = curr->next;
+    while (current->data != value) {
+        previous = current;
+        current = current->next;
     }
 
-    prev->next = curr->next;
+    previous->next = current->next;
 
-    if (curr == prev) {
+    if (current == previous) {
         tail = NULL;
     }
-    if (tail == curr) {
-        tail = prev;
+    if (tail == current) {
+        tail = previous;
     }
 
-    curr->next = NULL;
-    delete curr;
+    current->next = NULL;
+    delete current;
 }
 
 void display(Node* tail) {

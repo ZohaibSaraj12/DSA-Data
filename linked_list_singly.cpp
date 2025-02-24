@@ -91,28 +91,28 @@ void deleteNode(Node*& head, int data)
     }
     else 
     {
-        Node* previous = NULL;
-        Node* current = head;
+        Node* previousious = NULL;
+        Node* currentent = head;
 
-        while (current != NULL)
+        while (currentent != NULL)
         {
-            if (current->data == data)
+            if (currentent->data == data)
             {
-                previous->next = current->next;
-                current->next = NULL;
-                delete current;
+                previousious->next = currentent->next;
+                currentent->next = NULL;
+                delete currentent;
                 return;
             }
-            previous = current;
-            current = current->next;
+            previousious = currentent;
+            currentent = currentent->next;
         }
     }
 
 }
 void deleteNodeByPosition(Node*& head, Node*& tail, int position)
 {
-    Node* previous = NULL;
-    Node* current = head;
+    Node* previousious = NULL;
+    Node* currentent = head;
     if (position < 1)
     {
         cout << "No node availabe" << endl;
@@ -127,19 +127,19 @@ void deleteNodeByPosition(Node*& head, Node*& tail, int position)
         return;
     }
     int count = 1;
-    while (count < position && current != NULL)
+    while (count < position && currentent != NULL)
     {
-        previous = current;
-        current = current->next;
+        previousious = currentent;
+        currentent = currentent->next;
         
         count++;
     }
     
-    if(current != NULL) 
+    if(currentent != NULL) 
     {
-    previous->next = current->next;
-    current->next = NULL;
-    delete current;
+    previousious->next = currentent->next;
+    currentent->next = NULL;
+    delete currentent;
     }
 }
 

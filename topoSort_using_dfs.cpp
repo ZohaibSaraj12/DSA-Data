@@ -23,7 +23,7 @@ public:
 
     // Function to perform DFS and add vertices to the stack for topological sort
     void dfs(int vertex, vector<int>& visited, stack<int>& topoStack) {
-        // Mark the current node as visited
+        // Mark the currentent node as visited
         visited[vertex] = 1;
         int i = 0;
         cout << "\n" << "dfs ki shruat vertex bhi dekh lo  " << vertex << endl;
@@ -43,7 +43,7 @@ public:
         }
         
         cout << "\n" << "stack mein " << vertex << " ko push kar rahy" << endl;
-        // Push the current vertex to the stack (after visiting all its neighbors)
+        // Push the currentent vertex to the stack (after visiting all its neighbors)
         topoStack.push(vertex);
         cout << "\n Dobara dfs mein ja rahy hain" << endl;
     }

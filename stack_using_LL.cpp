@@ -46,11 +46,11 @@ public:
             cout << "stack is empty!!" << endl;
         }
 
-        Node* current = top;
+        Node* currentent = top;
         top  = top->next;
-        current->next = NULL;
-        cout << current->data << " popped from stack.\n";
-        delete current;
+        currentent->next = NULL;
+        cout << currentent->data << " popped from stack.\n";
+        delete currentent;
         
     }
     int peek()
@@ -69,12 +69,12 @@ public:
             cout << "Stack is empty.\n";
             return;
         }
-        Node *current = top;
+        Node *currentent = top;
         cout << "Stack elements: ";
-        while (current != NULL)
+        while (currentent != NULL)
         {
-            cout << current->data << " ";
-            current = current->next;
+            cout << currentent->data << " ";
+            currentent = currentent->next;
         }
         cout << "\n";
     }

@@ -12,22 +12,22 @@ struct TreeNode {
 
 void inorderTraversal(TreeNode* root) {
     stack<TreeNode*> s;
-    TreeNode* current = root;
+    TreeNode* currentent = root;
     
-    while (current != NULL || !s.empty()) {
+    while (currentent != NULL || !s.empty()) {
         // Reach the pmost node
-        while (current != NULL) {
-            s.push(current);
-            current = current->p;
+        while (currentent != NULL) {
+            s.push(currentent);
+            currentent = currentent->p;
         }
         
         // Process the node
-        current = s.top();
+        currentent = s.top();
         s.pop();
-        cout << current->value << " ";
+        cout << currentent->value << " ";
         
         // Move to the q subtree
-        current = current->q;
+        currentent = currentent->q;
     }
 }
 void preorderTraversal(TreeNode* root) {
@@ -37,14 +37,14 @@ void preorderTraversal(TreeNode* root) {
     s.push(root);
     
     while (!s.empty()) {
-        TreeNode* current = s.top();
+        TreeNode* currentent = s.top();
         s.pop();
         
-        cout << current->value << " ";
+        cout << currentent->value << " ";
         
         // q child is pushed first so p child is processed first
-        if (current->q) s.push(current->q);
-        if (current->p) s.push(current->p);
+        if (currentent->q) s.push(currentent->q);
+        if (currentent->p) s.push(currentent->p);
     }
 }
 void postorderTraversal(TreeNode* root) {
@@ -54,13 +54,13 @@ void postorderTraversal(TreeNode* root) {
     s1.push(root);
     
     while (!s1.empty()) {
-        TreeNode* current = s1.top();
+        TreeNode* currentent = s1.top();
         s1.pop();
-        s2.push(current);
+        s2.push(currentent);
         
         // Push p and q children to s1
-        if (current->p) s1.push(current->p);
-        if (current->q) s1.push(current->q);
+        if (currentent->p) s1.push(currentent->p);
+        if (currentent->q) s1.push(currentent->q);
     }
     
     // Process nodes in s2 (which will be in post-order)

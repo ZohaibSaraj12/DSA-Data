@@ -31,18 +31,18 @@ void insertAfter(Node *&tail, int element, int data)
         return;
     }
 
-    Node *current = tail;
+    Node *currentent = tail;
     do
     {
-        if (current->data == element)
+        if (currentent->data == element)
         {
             Node *temp = new Node(data);
-            temp->next = current->next;
-            current->next = temp;
+            temp->next = currentent->next;
+            currentent->next = temp;
             return;
         }
-        current = current->next;
-    } while (current != tail);
+        currentent = currentent->next;
+    } while (currentent != tail);
 
     cout << "Element " << element << " not found!" << endl;
 }
@@ -59,19 +59,19 @@ void insertBefore(Node *&tail, int element, int data)
         return;
     }
 
-    Node *current = tail;
+    Node *currentent = tail;
     do
     {
-        if (current->next->data == element)
+        if (currentent->next->data == element)
         {
             Node *temp = new Node(data);
-            temp->next = current->next;
-            current->next = temp;
+            temp->next = currentent->next;
+            currentent->next = temp;
             // If the element is the tail node, update the tail to the new node
             return;
         }
-        current = current->next;
-    } while (current != tail);
+        currentent = currentent->next;
+    } while (currentent != tail);
 
     cout << "Element " << element << " not found!" << endl;
 }

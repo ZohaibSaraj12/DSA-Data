@@ -5,17 +5,17 @@ class Node {
 public:
     int data;
     Node* next;
-    Node* prev;
+    Node* previous;
 
     Node(int d) {
         data = d;
         next = NULL;
-        prev = NULL;
+        previous = NULL;
     }
 
     ~Node() {
         next = NULL;
-        prev = NULL;
+        previous = NULL;
     }
 };
 
@@ -24,17 +24,17 @@ void insertNode(Node*& tail, int element, int d) {
         Node* newNode = new Node(d);
         tail = newNode;
         newNode->next = newNode;
-        newNode->prev = newNode;
+        newNode->previous = newNode;
     } else {
-        Node* curr = tail;
-        while (curr->data != element) {
-            curr = curr->next;
+        Node* current = tail;
+        while (current->data != element) {
+            current = current->next;
         }
         Node* temp = new Node(d);
-        temp->next = curr->next;
-        temp->prev = curr;
-        curr->next->prev = temp;
-        curr->next = temp;
+        temp->next = current->next;
+        temp->previous = current;
+        current->next->previous = temp;
+        current->next = temp;
     }
 }
 
@@ -44,24 +44,24 @@ void deleteNode(Node*& tail, int value) {
         return;
     }
 
-    Node* curr = tail;
-    while (curr->data != value) {
-        curr = curr->next;
+    Node* current = tail;
+    while (current->data != value) {
+        current = current->next;
     }
 
-    if (curr->next == curr) {  // Single node case
+    if (current->next == current) {  // Single node case
         tail = NULL;
     } else {
-        curr->prev->next = curr->next;
-        curr->next->prev = curr->prev;
-        if (curr == tail) { 
-            tail = curr->prev;  
+        current->previous->next = current->next;
+        current->next->previous = current->previous;
+        if (current == tail) { 
+            tail = current->previous;  
         }
     }
 
-    curr->next = NULL;
-    curr->prev = NULL;
-    delete curr;
+    current->next = NULL;
+    current->previous = NULL;
+    delete current;
 }
 
 void display(Node* tail) {

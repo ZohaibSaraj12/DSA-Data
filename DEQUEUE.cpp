@@ -79,7 +79,7 @@ public:
         if (front == rear) {  // If only one element exists
             front = rear = -1;  // Reset deque after deleting the last element
         } else {
-            rear = (rear - 1 + 5) % 5;  // Move rear to previous element in circular manner
+            rear = (rear - 1 + 5) % 5;  // Move rear to previousious element in circular manner
         }
     }
 

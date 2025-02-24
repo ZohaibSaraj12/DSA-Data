@@ -5,7 +5,7 @@
 using namespace std;
 
 void fifoPageReplacement(const vector<int>& pages, int capacity) {
-    unordered_set<int> pageSet;    // Track pages currently in memory
+    unordered_set<int> pageSet;    // Track pages currentently in memory
     queue<int> pageQueue;          // FIFO order of pages
     int pageFaults = 0;
 
@@ -26,7 +26,7 @@ void fifoPageReplacement(const vector<int>& pages, int capacity) {
             pageQueue.push(page);
         }
 
-        // Display current pages in memory
+        // Display currentent pages in memory
         cout << "Pages in memory: ";
         queue<int> tempQueue = pageQueue;
         while (!tempQueue.empty()) {

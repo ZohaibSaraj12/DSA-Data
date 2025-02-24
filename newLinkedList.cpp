@@ -105,32 +105,32 @@ void deleteNode(int position, Node *&head)
 {
     if (position == 1)
     {
-        Node *previous = head;
+        Node *previousious = head;
         head = head -> next;
-        previous -> next = NULL;
+        previousious -> next = NULL;
 
-        delete previous;
+        delete previousious;
     }
 
     else
     {
-        Node *current = head;
-        Node *previous = NULL;
+        Node *currentent = head;
+        Node *previousious = NULL;
 
         int count = 1;
 
-        while (count < position && current != NULL)
+        while (count < position && currentent != NULL)
         {
-            previous = current;
-            current = current -> next;
+            previousious = currentent;
+            currentent = currentent -> next;
             count++;
         }
 
-        if (current != NULL)
+        if (currentent != NULL)
         {
-            previous -> next = current -> next;
-            current -> next = NULL;
-            delete current;
+            previousious -> next = currentent -> next;
+            currentent -> next = NULL;
+            delete currentent;
         }
     }
 }

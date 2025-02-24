@@ -106,44 +106,44 @@ void deleteNode(Node *&head, Node* &tail, int position)
     }
     if (position == 1)
     {
-        Node *previous = head;
+        Node *previousious = head;
 
         head = head->next;
 
         if (head != NULL)
         {
-        previous->next = NULL;
+        previousious->next = NULL;
         }
         
         else {
         head = tail = NULL; // If the list becomes empty
     }
-        delete previous;
+        delete previousious;
         
     }
     else
     {
-        Node *previous = NULL;
-        Node *current = head;
+        Node *previousious = NULL;
+        Node *currentent = head;
 
         int count = 1;
 
-        while (count < position && current != NULL)
+        while (count < position && currentent != NULL)
         {
-            previous = current;
-            current = current->next;
+            previousious = currentent;
+            currentent = currentent->next;
             count++;
         }
-        if (current == NULL) 
+        if (currentent == NULL) 
         {
          cout << "deleting beyond list" << endl;
          return;
         }
-        if (current != NULL) 
+        if (currentent != NULL) 
         {
-        previous->next = current->next;
-        current->next = NULL;
-        delete current;
+        previousious->next = currentent->next;
+        currentent->next = NULL;
+        delete currentent;
         
         }
     }
@@ -170,20 +170,20 @@ void deleteNodeByValue(Node *&head, int data)
 
     else
     {
-        Node *previous = NULL;
-        Node *current = head;
-        while (current != NULL)
+        Node *previousious = NULL;
+        Node *currentent = head;
+        while (currentent != NULL)
         {
-            if (current->data == data)
+            if (currentent->data == data)
             {
-                previous->next = current->next;
-                current->next = NULL;
-                delete current;
+                previousious->next = currentent->next;
+                currentent->next = NULL;
+                delete currentent;
                 
                 return;
             }
-            previous = current;
-            current = current->next;
+            previousious = currentent;
+            currentent = currentent->next;
         }
         
     }

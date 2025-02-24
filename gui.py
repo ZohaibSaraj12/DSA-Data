@@ -101,9 +101,9 @@ class KeyboardApp(App):
                 self.suggestion_box.add_widget(btn)
 
     def add_suggestion_to_input(self, instance):
-        current_text = self.text_input.text.split()
-        current_text[-1] = instance.text  # Replace last word with suggestion
-        self.text_input.text = " ".join(current_text) + " "
+        currentent_text = self.text_input.text.split()
+        currentent_text[-1] = instance.text  # Replace last word with suggestion
+        self.text_input.text = " ".join(currentent_text) + " "
 
     def add_char_to_input(self, instance):
         self.text_input.text += instance.text

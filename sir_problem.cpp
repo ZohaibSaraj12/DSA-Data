@@ -3,13 +3,13 @@ using namespace std;
 int main() {
     int* arr = new int[10]; 
     int capacity = 10;     
-    int current = 0;        
+    int currentent = 0;        
     int value;
 
      cout << "You can enter integers (min Size is 10) But you can Enter More. Enter -1 to stop: " <<  endl;
 
     while (true) {
-        if (current == capacity) {
+        if (currentent == capacity) {
         
             int nc = capacity * 2;
             int* temp = new int[nc];
@@ -25,7 +25,7 @@ int main() {
             capacity = nc; 
         }
 
-         cout << "Enter value (" << (current + 1) << "): ";
+         cout << "Enter value (" << (currentent + 1) << "): ";
          cin >> value;
 
         
@@ -33,19 +33,19 @@ int main() {
             break;
         }
         
-        arr[current] = value;
-        current = current + 1;
+        arr[currentent] = value;
+        currentent = currentent + 1;
     }
 
     
      cout << "The elements in the array are: ";
-    for (int i = 0; i < current; i++) {
+    for (int i = 0; i < currentent; i++) {
          cout << arr[i] << " ";
     }
 
     
-     cout << "\nCurrent capacity: " << capacity <<  endl;
-     cout << "Current size: " << current <<  endl;
+     cout << "\ncurrentent capacity: " << capacity <<  endl;
+     cout << "currentent size: " << currentent <<  endl;
 
    
     delete[] arr;

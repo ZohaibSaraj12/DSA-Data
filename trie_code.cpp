@@ -31,26 +31,26 @@ public:
 
     // Insert a word into the Trie
     void insert(const string& word) {
-        TrieNode* current = root;
+        TrieNode* currentent = root;
         for (char ch : word) {
-            int index = ch - 'a'; // Get the index for the current character
-            if (!current->children[index]) {
-                current->children[index] = new TrieNode(); // Create a new node if it doesn't exist
+            int index = ch - 'a'; // Get the index for the currentent character
+            if (!currentent->children[index]) {
+                currentent->children[index] = new TrieNode(); // Create a new node if it doesn't exist
             }
-            current = current->children[index]; // Move to the next node
+            currentent = currentent->children[index]; // Move to the next node
         }
-        current->isEndOfWord = true; // Mark the end of the word
+        currentent->isEndOfWord = true; // Mark the end of the word
     }
 
     // Search for a word in the Trie
     bool search(const string& word) {
-        TrieNode* current = root;
+        TrieNode* currentent = root;
         for (char ch : word) {
-            int index = ch - 'a'; // Get the index for the current character
-            if (!current->children[index]) return false; // If the path doesn't exist, return false
-            current = current->children[index]; // Move to the next node
+            int index = ch - 'a'; // Get the index for the currentent character
+            if (!currentent->children[index]) return false; // If the path doesn't exist, return false
+            currentent = currentent->children[index]; // Move to the next node
         }
-        return current->isEndOfWord; // Return true if it's the end of a word
+        return currentent->isEndOfWord; // Return true if it's the end of a word
     }
 };
 
