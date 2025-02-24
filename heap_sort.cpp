@@ -5,18 +5,22 @@ void heapify(int arr[], int n, int i)
     int parent = i;
     int p = i * 2 + 1;
     int q = i * 2 + 2;
+    // min heap if parent <= child here illusion but same work
+    // max heap if parent >= child
 
-    if (p < n && arr[parent] < arr[p])
+
+    // pure min heap implementation 
+    if (p < n && arr[parent] > arr[p])
     {
         parent = p;
     }
-    if (q < n && arr[parent] < arr[q])
+    if (q < n && arr[parent] > arr[q])
     {
         parent = q;
     }
     if (parent != i)
     {
-        swap(arr[parent], arr[i]);
+        swap(arr[i], arr[parent]);
         heapify(arr, n, parent);
     }
 }
@@ -34,6 +38,10 @@ void heapSort(int arr[], int n)
         swap(arr[0], arr[size]);
         size--;
         heapify(arr, size + 1, 0);
+    }
+    for (int i = 0; i < n / 2; i++)
+    {
+        swap(arr[i], arr[n - i - 1]);
     }
 }
 int main()
