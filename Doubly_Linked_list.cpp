@@ -52,8 +52,8 @@ void insertAtTail(Node *&head, Node *&tail, int data)
     temp->previous = tail;
     tail = temp;
 }
-// inserting at specific or desired position
 
+// inserting at specific or desired position
 void insertAtPosition(Node *&head, Node *&tail, int data, int position)
 {
     if (position == 1)
@@ -177,15 +177,13 @@ int main()
     Node *tail = NULL;
 
     insertAtHead(head, tail, 20);
-    printList(head);
-    insertAtHead(head, tail, 30);
-    printList(head);
     insertAtHead(head, tail, 40);
-    printList(head);
-    insertAtTail(head, tail, 50);
-    printList(head);
-    insertAtPosition(head, tail, 30, 3);
-    printList(head);
-    deleteNode(head, tail, 5);
+    insertAtHead(head, tail, 30);
+    insertAtHead(head, tail, 50);
+    insertAtTail(head, tail, 60);
+    insertAtTail(head, tail, 80);
+    insertAtTail(head, tail, 90);
+    insertAtPosition(head, tail, 300, 8);
+    deleteNode(head, tail, 8);
     printList(head);
 }

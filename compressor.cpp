@@ -14,7 +14,7 @@ struct Node {
     Node(char character, int frequency) {
         ch = character;
         freq = frequency;
-        p = q = nullptr;
+        p = q = NULL;
     }
 };
 

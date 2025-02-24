@@ -4,230 +4,97 @@ using namespace std;
 class Node {
 public:
     int data;
-    Node* prev;
     Node* next;
+    Node* prev;
 
-    Node(int val) {
-        data = val;
-        prev = nullptr;
-        next = nullptr;
+    Node(int d) {
+        data = d;
+        next = NULL;
+        prev = NULL;
+    }
+
+    ~Node() {
+        next = NULL;
+        prev = NULL;
     }
 };
 
-// Function to insert at a specific position
-void insertAtPosition(Node*& tail, int position, int val) {
-    Node* newNode = new Node(val);
-
-    if (tail == nullptr) {
-        // Empty list
+void insertNode(Node*& tail, int element, int d) {
+    if (tail == NULL) {
+        Node* newNode = new Node(d);
         tail = newNode;
-        tail->next = tail;
-        tail->prev = tail;
-        return;
-    }
-
-    Node* current = tail->next; // Start from head
-    if (position == 1) {
-        // Insertion at head
-        newNode->next = tail->next;
-        newNode->prev = tail;
-        tail->next->prev = newNode;
-        tail->next = newNode;
-        return;
-    }
-
-    int count = 1;
-    while (count < position - 1 && current->next != tail->next) {
-        current = current->next;
-        count++;
-    }
-
-    newNode->next = current->next;
-    newNode->prev = current;
-    current->next->prev = newNode;
-    current->next = newNode;
-
-    if (current == tail) {
-        tail = newNode; // Update tail if inserted at the end
-    }
-}
-
-// Function to insert before a given data
-void insertBefore(Node*& tail, int data, int val) {
-    if (tail == nullptr) {
-        cout << "List is empty." << endl;
-        return;
-    }
-
-    Node* current = tail->next; // Start from head
-    do {
-        if (current->data == data) {
-            Node* newNode = new Node(val);
-            newNode->next = current;
-            newNode->prev = current->prev;
-            current->prev->next = newNode;
-            current->prev = newNode;
-
-            if (current == tail->next) {
-                // Update head if inserted before the head
-                tail->next = newNode;
-            }
-            return;
-        }
-        current = current->next;
-    } while (current != tail->next);
-
-    cout << "Element " << data << " not found in the list." << endl;
-}
-
-// Function to insert after a given data
-void insertAfter(Node*& tail, int data, int val) {
-    if (tail == nullptr) {
-        cout << "List is empty." << endl;
-        return;
-    }
-
-    Node* current = tail->next; // Start from head
-    do {
-        if (current->data == data) {
-            Node* newNode = new Node(val);
-            newNode->next = current->next;
-            newNode->prev = current;
-            current->next->prev = newNode;
-            current->next = newNode;
-
-            if (current == tail) {
-                tail = newNode; // Update tail if inserted after the tail
-            }
-            return;
-        }
-        current = current->next;
-    } while (current != tail->next);
-
-    cout << "Element " << data << " not found in the list." << endl;
-}
-
-// Function to delete a node by data
-void deleteByData(Node*& tail, int data) {
-    if (tail == nullptr) {
-        cout << "List is empty." << endl;
-        return;
-    }
-
-    Node* current = tail->next;
-    do {
-        if (current->data == data) {
-            if (current == tail->next && current == tail) {
-                // Only one node in the list
-                delete current;
-                tail = nullptr;
-                return;
-            }
-
-            if (current == tail->next) {
-                // Deleting head
-                tail->next = current->next;
-                current->next->prev = tail;
-            } else if (current == tail) {
-                // Deleting tail
-                tail = current->prev;
-                tail->next = current->next;
-                current->next->prev = tail;
-            } else {
-                // Deleting any other node
-                current->prev->next = current->next;
-                current->next->prev = current->prev;
-            }
-
-            delete current;
-            return;
-        }
-        current = current->next;
-    } while (current != tail->next);
-
-    cout << "Element " << data << " not found in the list." << endl;
-}
-
-// Function to delete a node by position
-void deleteByPosition(Node*& tail, int position) {
-    if (tail == nullptr) {
-        cout << "List is empty." << endl;
-        return;
-    }
-
-    Node* current = tail->next;
-    if (position == 1) {
-        // Deleting head
-        if (current == tail) {
-            delete current;
-            tail = nullptr;
-        } else {
-            tail->next = current->next;
-            current->next->prev = tail;
-            delete current;
-        }
-        return;
-    }
-
-    int count = 1;
-    while (count < position && current->next != tail->next) {
-        current = current->next;
-        count++;
-    }
-
-    if (count == position) {
-        if (current == tail) {
-            // Deleting tail
-            tail = current->prev;
-            tail->next = current->next;
-            current->next->prev = tail;
-        } else {
-            // Deleting any other node
-            current->prev->next = current->next;
-            current->next->prev = current->prev;
-        }
-        delete current;
+        newNode->next = newNode;
+        newNode->prev = newNode;
     } else {
-        cout << "Position out of range." << endl;
+        Node* curr = tail;
+        while (curr->data != element) {
+            curr = curr->next;
+        }
+        Node* temp = new Node(d);
+        temp->next = curr->next;
+        temp->prev = curr;
+        curr->next->prev = temp;
+        curr->next = temp;
     }
 }
 
-// Function to print the list
-void printList(Node* tail) {
-    if (tail == nullptr) {
-        cout << "List is empty." << endl;
+void deleteNode(Node*& tail, int value) {
+    if (tail == NULL) {
+        cout << "List is empty, please check again" << endl;
         return;
     }
 
-    Node* current = tail->next;
-    do {
-        cout << current->data << " ";
-        current = current->next;
-    } while (current != tail->next);
-    cout << endl;
+    Node* curr = tail;
+    while (curr->data != value) {
+        curr = curr->next;
+    }
+
+    if (curr->next == curr) {  // Single node case
+        tail = NULL;
+    } else {
+        curr->prev->next = curr->next;
+        curr->next->prev = curr->prev;
+        if (curr == tail) { 
+            tail = curr->prev;  
+        }
+    }
+
+    curr->next = NULL;
+    curr->prev = NULL;
+    delete curr;
 }
 
-// Main function
+void display(Node* tail) {
+    if (tail == NULL) {
+        cout << "List is empty!\n";
+        return;
+    }
+    Node* temp = tail->next;
+    do {
+        cout << temp->data << " <-> ";
+        temp = temp->next;
+    } while (temp != tail->next);
+    cout << "(Back to head)\n";
+}
+
 int main() {
-    Node* tail = nullptr;
+    Node* tail = NULL;
 
-    insertAtPosition(tail, 1, 10); // Insert at head
-    printList(tail);
+    insertNode(tail, 0, 10);
+    insertNode(tail, 10, 20);
+    insertNode(tail, 20, 30);
+    insertNode(tail, 10, 15);
 
-    insertAtPosition(tail, 2, 20); // Insert at position 2
-    printList(tail);
+    cout << "Doubly Circular Linked List after insertions:\n";
+    display(tail);
 
-    insertBefore(tail, 10, 5); // Insert before 10
-    printList(tail);
+    deleteNode(tail, 20);
+    cout << "Doubly Circular Linked List after deleting 20:\n";
+    display(tail);
 
-    insertAfter(tail, 20, 30); // Insert after 20
-    printList(tail);
-
-    deleteByData(tail, 10); // Delete 10
-    printList(tail);
-
-    deleteByPosition(tail, 2); // Delete position 2
-    printList(tail);
+    deleteNode(tail, 10);
+    cout << "Doubly Circular Linked List after deleting 10:\n";
+    display(tail);
 
     return 0;
 }

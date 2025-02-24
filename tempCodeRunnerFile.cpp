@@ -1,1 +1,1 @@
-elete temp;
+0
