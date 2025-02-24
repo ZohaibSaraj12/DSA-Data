@@ -3,27 +3,25 @@ using namespace std;
 void heapify(int arr[], int n, int i)
 {
     int parent = i;
-    int p = i * 2 + 1;
-    int q = i * 2 + 2;
-    // min heap if parent <= child here illusion but same work
-    // max heap if parent >= child
+    int lc = i * 2 + 1;
+    int rc = i * 2 + 2;
 
-
-    // pure min heap implementation 
-    if (p < n && arr[parent] > arr[p])
+    if (lc < n && arr[parent] > arr[lc])
     {
-        parent = p;
+        parent = lc;
     }
-    if (q < n && arr[parent] > arr[q])
+    if (rc < n &&  arr[parent] > arr[rc])
     {
-        parent = q;
+        parent = rc;
     }
     if (parent != i)
     {
         swap(arr[i], arr[parent]);
         heapify(arr, n, parent);
     }
-}
+
+} 
+
 void heapSort(int arr[], int n)
 {
     for (int i = (n - 1) / 2; i >= 0; i--)
@@ -32,7 +30,6 @@ void heapSort(int arr[], int n)
     }
 
     int size = n - 1;
-
     while (size > 0)
     {
         swap(arr[0], arr[size]);
@@ -43,15 +40,16 @@ void heapSort(int arr[], int n)
     {
         swap(arr[i], arr[n - i - 1]);
     }
+
+
 }
 int main()
 {
-    int arr[6] = {5, 4, 20, 50, 40, 70};
-    heapSort(arr, 6);
+    int arr[5] = {3, 2, 1, 5, 4};
+    heapSort(arr, 5);
 
-    cout << "Printing Sorted array" << endl;
 
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < 5; i++)
     {
         cout << arr[i] << " ";
     }
