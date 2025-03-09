@@ -147,10 +147,7 @@ void deleteNode(Node *&head, Node *&tail, int position)
             current->next = NULL;
             delete current;
         }
-        if (current == tail)
-        {
-            tail = previous;
-        }
+        
     }
 }
 

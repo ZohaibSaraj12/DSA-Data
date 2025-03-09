@@ -88,7 +88,7 @@ void deleteNode(Node*& head, Node*& tail, int data)
     if (head == NULL || tail == NULL)
         return; // previousent null pointer dereference
 
-    if (head->data == data)
+    if (head->data == data) 
     {
         Node* temp = head;
         head = head->next;

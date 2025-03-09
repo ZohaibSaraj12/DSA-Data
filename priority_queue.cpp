@@ -1,7 +1,7 @@
 #include <iostream>
 #include <queue>
 #include <vector>
-
+using namespace std;
 int main() {
     // Max-heap: Default behavior
     priority_queue<int> maxHeap;

@@ -1,20 +1,25 @@
 #include <iostream>
+#include <vector>
 using namespace std;
+
 class Queue {
-int arr[10];
+
+vector<int>arr;
 int front;
 int rear;
 
 public:
-Queue()
+
+Queue() : arr(10, 0)
 {
+
     front = -1;
     rear = -1;
 }
 
 bool isFull()
 {
-    return (rear == 9);
+    return (rear == arr.size() - 1);
 }
 
 bool isEmpty()
@@ -34,12 +39,12 @@ void push(int data)
     {
         front = 0;
     }
-    else 
-    {
-        rear++;
-        arr[rear] = data;
-        cout << "Element Pushed with value " << data << endl;
-    }
+
+    
+    rear++;
+    arr[rear] = data;
+    cout << "Element Pushed with value " << data << endl;
+    
 }
 void pop()
 {
@@ -78,7 +83,7 @@ void backElement()
 {
     if (isEmpty())
     {
-        cout << "Stack Empty no back Element, Push onto the Queue" << endl;
+        cout << "Queue Empty no back Element, Push onto the Queue" << endl;
         return;
     }
     else 
@@ -107,5 +112,15 @@ void display()
 };
 int main()
 {
+    Queue q;
+    q.push(10);
+    q.push(20);
+    q.push(30);
+    q.push(40);
+    q.display();
+
+    q.pop();
+    q.pop();
+    q.display();
 
 }

@@ -68,11 +68,7 @@ void insertAtPosition(Node*& head, Node*& tail, int data, int position)
     newNode->next = temp->next;
     temp->next = newNode;
 
-    if (temp == NULL)
-    {
-        tail = newNode;
-        
-    } 
+     
 }
 void deleteNode(Node*& head, int data)
 {

@@ -1,84 +1,88 @@
 #include <iostream>
 using namespace std;
-class Stack {
+class Stack
+{
 public:
-int* arr;
-int size;
-int top;
+    int *arr;
+    int size;
+    int top;
 
-// Constructor
-Stack(int size) 
-{
-    arr = new int[size];
-    top = -1;
-    this->size = size;
-
-}
-
-// Destrcutor 
-
-~Stack() 
-{
-    delete[] arr;
-}
-bool isFull() 
-{
-    return (top == size - 1);
-}
-bool isEmpty()
-{
-    return (top == -1);
-}
-void push(int element) 
-{
-    if (isFull())
+    // Constructor
+    Stack(int size)
     {
-        cout << "Stack overflow!!" << endl;
-        return;
+        arr = new int[size];
+        top = -1;
+        this->size = size;
     }
-    arr[++top] = element;
 
-    cout << element << " Pushed Onto the stack!!" << endl;
-}
-void pop()
-{
-    if (isEmpty())
-    {
-        cout << "Stack UnderFlow!!!" << endl;
-        return;
-    }
-    
-    cout << arr[top--] << " Popped Out of the Stack" << endl;
+    // Destrcutor
 
-}
-int peek() 
-{
-    if (isEmpty())
+    ~Stack()
     {
-        cout << "Stack is empty!!" << endl;
-        return -1;
+        delete[] arr;
     }
-    return arr[top];
-}
-void display()
-{
-    if (isEmpty())
+    bool isFull()
     {
-        cout << "Stack is Empty!!" << endl;
-        return;
+        return (top == size - 1);
     }
-    
-    cout << "Elements are: " << endl;
-    for (int i = top; i >= 0; i--)
+    bool isEmpty()
     {
-        cout << arr[i] << " ";
+        return (top == -1);
     }
-    cout << endl;
-}
+    void push(int element)
+    {
+        if (isFull())
+        {
+            cout << "Stack overflow!!" << endl;
+            return;
+        }
+
+        
+
+        top++;
+        arr[top] = element;
+
+        cout << element << " Pushed Onto the stack!!" << endl;
+    }
+    void pop()
+    {
+        if (isEmpty())
+        {
+            cout << "Stack UnderFlow!!!" << endl;
+            return;
+        }
+
+        cout << arr[top] << " Popped Out of the Stack" << endl;
+        top--;
+    }
+    int peek()
+    {
+        if (isEmpty())
+        {
+            cout << "Stack is empty!!" << endl;
+            return -1;
+        }
+        return arr[top];
+    }
+    void display()
+    {
+        if (isEmpty())
+        {
+            cout << "Stack is Empty!!" << endl;
+            return;
+        }
+
+        cout << "Elements are: " << endl;
+        for (int i = top; i >= 0; i--)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
 };
-int main() 
+int main()
 {
-int stackSize;
+    int stackSize;
     cout << "Enter the size of the stack: ";
     cin >> stackSize;
 
